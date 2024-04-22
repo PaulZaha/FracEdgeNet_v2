@@ -24,7 +24,7 @@ def create_generators(train_df,test_df,targetsize):
     Creates train_, validation_, and test_generator to feed Model with batches of data
     """
     #images pathing
-    path = os.path.join(os.getcwd(),'FracAtlas','images','all')
+    path = os.path.join(os.getcwd(),'FracAtlas','images','full_augmented')
     print(os.getcwd())
     #Create DataGenerator for training and validation data with augmentation
     #Note: For EfficientNet remove rescaling
@@ -78,14 +78,20 @@ def create_generators(train_df,test_df,targetsize):
 
 def main():
     os.chdir(os.path.join(os.getcwd(),'Dataset','FracAtlas'))
-    dataframe = pd.read_csv('dataset.csv')
+    dataframe = pd.read_csv('dataset_preaugmented.csv')
     os.chdir(os.path.join(os.getcwd(),'..'))
     
     dataframe = dataframe[['image_id', 'fractured']].assign(fractured=dataframe['fractured'].astype(str))
-    print(dataframe)
 
 
-    train_dataset, test_dataset = train_test_split(dataframe, train_size = 0.9, shuffle = True)
+    original_indices = [idx for idx in range(len(dataframe)) if not dataframe['fractured'].iloc[idx].endswith('ed.jpg')]
+
+    # Führe den Train-Test-Split basierend auf den Originalindizes durch
+    train_indices, test_indices = train_test_split(original_indices, train_size=0.9, shuffle=True)
+
+    # Wende die Indizes auf das DataFrame an, um die Trainings- und Testdatensätze zu erhalten
+    train_dataset = dataframe.iloc[train_indices]
+    test_dataset = dataframe.iloc[test_indices]
 
     #gewicht = round(((dataframe['fractured'].value_counts()).get(0,1))/(dataframe['fractured'].value_counts()).get(1,0),3)
     
@@ -96,7 +102,7 @@ def main():
     train_generator,validation_generator, test_generator = create_generators(train_dataset,test_dataset,targetsize)
 
 
-    EfficientNetB4(train_generator,validation_generator,test_generator)
+    EfficientNetV2S(train_generator,validation_generator,test_generator)
 
 
 if __name__ == "__main__":
