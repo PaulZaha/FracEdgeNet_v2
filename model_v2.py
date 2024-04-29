@@ -605,8 +605,8 @@ def create_kirsch_filters():
     #return np.array(kirsch_filters, dtype=np.float32)
 
 
-def create_model(input_shape):
-    inputs = layers.Input(shape=input_shape)
+def create_model(prev_layer):
+    inputs = layers.Input(shape=prev_layer.shape[1:])
     conv_layer = layers.Conv2D(1, (3, 3), padding='same', activation='relu')(inputs)  # Faltungsschicht
     kirsch_filters = create_kirsch_filters()
     conv_layer = layers.Conv2D(8, (3, 3), padding='same', activation='relu', kernel_initializer=tf.constant_initializer(np.array(create_kirsch_filters())))(conv_layer)  # Faltung mit Kirsch-Matrizen
@@ -666,6 +666,7 @@ def MBConvBlock(
                 use_bias=False,
                 name=name + "expand_conv",
             )(inputs)
+            
             x = layers.BatchNormalization(
                 axis=bn_axis,
                 momentum=bn_momentum,
@@ -732,6 +733,7 @@ def MBConvBlock(
             use_bias=False,
             name=name + "project_conv",
         )(x)
+
         x = layers.BatchNormalization(
             axis=bn_axis, momentum=bn_momentum, name=name + "project_bn"
         )(x)
@@ -991,7 +993,7 @@ def EfficientNetV2(
         name="stem_conv",
     )(x)
     #!Custom Schicht
-    x=create_model(input_shape=(190,190,24))(x)
+    x=create_model(prev_layer=(x))(x)
 
     x = layers.BatchNormalization(
         axis=bn_axis,
@@ -1060,6 +1062,7 @@ def EfficientNetV2(
         use_bias=False,
         name="top_conv",
     )(x)
+
     x = layers.BatchNormalization(
         axis=bn_axis,
         momentum=bn_momentum,
@@ -1127,134 +1130,7 @@ def EfficientNetV2(
 #         "keras.applications.EfficientNetV2B0",
 #     ]
 # )
-def EfficientNetV2B0(
-    include_top=True,
-    weights="imagenet",
-    input_tensor=None,
-    input_shape=None,
-    pooling=None,
-    classes=1000,
-    classifier_activation="softmax",
-    include_preprocessing=True,
-):
-    return EfficientNetV2(
-        width_coefficient=1.0,
-        depth_coefficient=1.0,
-        default_size=224,
-        model_name="efficientnetv2-b0",
-        include_top=include_top,
-        weights=weights,
-        input_tensor=input_tensor,
-        input_shape=input_shape,
-        pooling=pooling,
-        classes=classes,
-        classifier_activation=classifier_activation,
-        include_preprocessing=include_preprocessing,
-    )
 
-
-# @keras_export(
-#     [
-#         "keras.applications.efficientnet_v2.EfficientNetV2B1",
-#         "keras.applications.EfficientNetV2B1",
-#     ]
-# )
-def EfficientNetV2B1(
-    include_top=True,
-    weights="imagenet",
-    input_tensor=None,
-    input_shape=None,
-    pooling=None,
-    classes=1000,
-    classifier_activation="softmax",
-    include_preprocessing=True,
-):
-    return EfficientNetV2(
-        width_coefficient=1.0,
-        depth_coefficient=1.1,
-        default_size=240,
-        model_name="efficientnetv2-b1",
-        include_top=include_top,
-        weights=weights,
-        input_tensor=input_tensor,
-        input_shape=input_shape,
-        pooling=pooling,
-        classes=classes,
-        classifier_activation=classifier_activation,
-        include_preprocessing=include_preprocessing,
-    )
-
-
-# @keras_export(
-#     [
-#         "keras.applications.efficientnet_v2.EfficientNetV2B2",
-#         "keras.applications.EfficientNetV2B2",
-#     ]
-# )
-def EfficientNetV2B2(
-    include_top=True,
-    weights="imagenet",
-    input_tensor=None,
-    input_shape=None,
-    pooling=None,
-    classes=1000,
-    classifier_activation="softmax",
-    include_preprocessing=True,
-):
-    return EfficientNetV2(
-        width_coefficient=1.1,
-        depth_coefficient=1.2,
-        default_size=260,
-        model_name="efficientnetv2-b2",
-        include_top=include_top,
-        weights=weights,
-        input_tensor=input_tensor,
-        input_shape=input_shape,
-        pooling=pooling,
-        classes=classes,
-        classifier_activation=classifier_activation,
-        include_preprocessing=include_preprocessing,
-    )
-
-
-# @keras_export(
-#     [
-#         "keras.applications.efficientnet_v2.EfficientNetV2B3",
-#         "keras.applications.EfficientNetV2B3",
-#     ]
-# )
-def EfficientNetV2B3(
-    include_top=True,
-    weights="imagenet",
-    input_tensor=None,
-    input_shape=None,
-    pooling=None,
-    classes=1000,
-    classifier_activation="softmax",
-    include_preprocessing=True,
-):
-    return EfficientNetV2(
-        width_coefficient=1.2,
-        depth_coefficient=1.4,
-        default_size=300,
-        model_name="efficientnetv2-b3",
-        include_top=include_top,
-        weights=weights,
-        input_tensor=input_tensor,
-        input_shape=input_shape,
-        pooling=pooling,
-        classes=classes,
-        classifier_activation=classifier_activation,
-        include_preprocessing=include_preprocessing,
-    )
-
-
-# @keras_export(
-#     [
-#         "keras.applications.efficientnet_v2.EfficientNetV2S",
-#         "keras.applications.EfficientNetV2S",
-#     ]
-# )
 def EfficientNetV2S(
     include_top=True,
     weights="imagenet",
@@ -1313,45 +1189,10 @@ def EfficientNetV2M(
     )
 
 
-# @keras_export(
-#     [
-#         "keras.applications.efficientnet_v2.EfficientNetV2L",
-#         "keras.applications.EfficientNetV2L",
-#     ]
-# )
-def EfficientNetV2L(
-    include_top=True,
-    weights="imagenet",
-    input_tensor=None,
-    input_shape=None,
-    pooling=None,
-    classes=1000,
-    classifier_activation="softmax",
-    include_preprocessing=True,
-):
-    return EfficientNetV2(
-        width_coefficient=1.0,
-        depth_coefficient=1.0,
-        default_size=480,
-        model_name="efficientnetv2-l",
-        include_top=include_top,
-        weights=weights,
-        input_tensor=input_tensor,
-        input_shape=input_shape,
-        pooling=pooling,
-        classes=classes,
-        classifier_activation=classifier_activation,
-        include_preprocessing=include_preprocessing,
-    )
 
-
-EfficientNetV2B0.__doc__ = BASE_DOCSTRING.format(name="EfficientNetV2B0")
-EfficientNetV2B1.__doc__ = BASE_DOCSTRING.format(name="EfficientNetV2B1")
-EfficientNetV2B2.__doc__ = BASE_DOCSTRING.format(name="EfficientNetV2B2")
-EfficientNetV2B3.__doc__ = BASE_DOCSTRING.format(name="EfficientNetV2B3")
 EfficientNetV2S.__doc__ = BASE_DOCSTRING.format(name="EfficientNetV2S")
 EfficientNetV2M.__doc__ = BASE_DOCSTRING.format(name="EfficientNetV2M")
-EfficientNetV2L.__doc__ = BASE_DOCSTRING.format(name="EfficientNetV2L")
+
 
 
 #@keras_export("keras.applications.efficientnet_v2.preprocess_input")

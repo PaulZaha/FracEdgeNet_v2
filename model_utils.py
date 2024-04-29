@@ -60,7 +60,7 @@ def model_fitter(model,train_generator,validation_generator,epochs):
 
 def model_evaluater(test_generator):
     #Load model from best epoch
-    model = tf.keras.models.load_model(os.path.join(os.getcwd(),"bestmodel.h5"))
+    model = tf.keras.models.load_model(os.path.join(os.getcwd(),"trained.h5"))
 
     #Evaluate the model and save to results
     results = model.evaluate(test_generator)
