@@ -8,7 +8,7 @@ import matplotlib.patches as patches
 import tensorflow as tf
 import xml.etree.ElementTree as ET
 
-from keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 import sklearn
 from sklearn.model_selection import KFold, train_test_split
@@ -17,7 +17,7 @@ from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 from model import *
-
+print(tf.__version__)
 
 def create_generators(train_df,test_df,targetsize):
     """
@@ -102,7 +102,7 @@ def main():
     train_generator,validation_generator, test_generator = create_generators(train_dataset,test_dataset,targetsize)
 
 
-    EfficientNetV2S(train_generator,validation_generator,test_generator)
+    FracEdgeNet(train_generator,validation_generator,test_generator)
 
 
 if __name__ == "__main__":

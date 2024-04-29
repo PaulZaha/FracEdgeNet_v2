@@ -3,8 +3,11 @@ from keras import layers
 import matplotlib.pyplot as plt
 import keras
 import os
-from keras.layers import Input, Add, Conv2D, GlobalAveragePooling2D, Reshape
+from keras.layers import Input, Add, Conv2D, GlobalAveragePooling2D, Reshape, Layer, Dense
 from keras.models import Model
+
+from model_v2 import EfficientNetV2S
+
 #from keras.applications import EfficientNetV2S, EfficientNetV2M
 
 from model_utils import *
@@ -35,76 +38,72 @@ def EfficientNetB4(train_generator,validation_generator,test_generator):
     model_evaluater(test_generator)
 
 
-def EfficientNetV2S(train_generator,validation_generator,test_generator):
-    create_model((256,256,8))
-    input_layer = layers.Input(shape=(373,373,3))
+
+
+
+
+#!Note: TF 2.16.1 für EfficientNetV2 benötigt, allerdings läuft da auf Linux noch kein GPU Support.
+
+
+
+
+
+def FracEdgeNet(train_generator,validation_generator,test_generator):
+    #create_model((256,256,8))
+    input_layer = layers.Input(shape=(380,380,3))
 
     EffV2S = tf.keras.applications.EfficientNetV2S(weights='imagenet',input_tensor = input_layer,include_top = False)
-    V2S_adap = tf.keras.models.Sequential()
+    pretrained_weights = EffV2S.get_weights()
 
+    
+    
+    FracEdgeNet = EfficientNetV2S(include_top=False,weights=None, input_tensor=input_layer)
     #!Ab hier: Neues modell zusammenschustern
 
 
-    for layer in EffV2S.layers[:2]:
-        V2S_adap.add(layer)
-    
-    V2S_adap.add(create_model(input_shape=V2S_adap.layers[-1].output_shape[1:]))
+    # pretrained_weights.insert(1, np.array([]))
+    # pretrained_weights.insert(1, np.array([]))
+    # pretrained_weights.insert(1, np.array([]))
+    # pretrained_weights.insert(1, np.array([]))
+    # pretrained_weights.insert(1, np.array([]))
+    # pretrained_weights.insert(1, np.array([]))
 
-    
-
-    for layer in EffV2S.layers[2:8]:
-        V2S_adap.add(layer)
-    
-    act1_out = V2S_adap.get_layer('stem_activation').output
-    act2_out = V2S_adap.get_layer('block1a_project_activation').output
-
-    added_output = Add()([act1_out, act2_out])
-
-    target_layer_output = V2S_adap.get_layer('block1a_project_conv').output
-
-    new_output = Add()([target_layer_output,added_output])
+    # #Für Classifier am Ende
+    # pretrained_weights.append(np.array([]))
+    # pretrained_weights.append(np.array([]))
 
 
-    new_model = Model(inputs=V2S_adap.input, outputs=added_output)
-    new_model.summary()
+    for layer in FracEdgeNet.layers:
+        try:
+            # Suche den entsprechenden Layer in den vortrainierten Gewichten
+            pretrained_layer = EffV2S.get_layer(layer.name)
+            # Setze die Gewichte des aktuellen Layers auf die Gewichte des entsprechenden Layers in den vortrainierten Gewichten
+            layer.set_weights(pretrained_layer.get_weights())
+        except ValueError as e:
+            print("ValueError in layer:", layer.name)
+            print("Exception message:", e)
 
-    #!hier kann dann wieder draufgelayert werden
 
-
+    #FracEdgeNet.set_weights(pretrained_weights)
 
 
 
+    #FracEdgeNet.summary()
+
+    FracEdgeNet.save('adap.h5')
 
 
 
-
-
-
-
-
-        
-    V2S_adap.summary()
-
-    for layer in EffV2S.layers:
+    for layer in FracEdgeNet.layers[:-2]:
         layer.trainable=False
-    flatten = tf.keras.layers.Flatten()
-    classifier = tf.keras.layers.Dense(1,activation='sigmoid')
-    tf.keras.saving.save_model(EffV2S,os.path.join(os.getcwd(),'model.h5'),save_format='h5')
-    model = tf.keras.models.Sequential([
-        EffV2S,
-        flatten,
-        classifier
-    ])
-    model.save("test.h5")
-    #Layer untrainable machen
-    # for layer in model.layers[:-2]: #auf -1 ändern, wenn nur der finale classifier und keine Dense schicht
-    #     layer.trainable=False
+    
+
         
-    model_compiler(model)
+    model_compiler(FracEdgeNet)
 
     print("Ab hier: Classifier Fitting")
-    model_fitter(model,train_generator,validation_generator,10)
-
+    model_fitter(FracEdgeNet,train_generator,validation_generator,3)
+    FracEdgeNet.save('trained.h5')
     model_evaluater(test_generator)
 
 
@@ -121,17 +120,27 @@ def create_kirsch_filters():
         [[5, -3, -3], [5, 0, -3], [5, -3, -3]],  # Kirsch-West
         [[-3, -3, -3], [-3, 0, -3], [5, 5, 5]]   # Kirsch-Nordwest
     ]
-    return np.array(kirsch_filters, dtype=np.float32)
+    return kirsch_filters
+    #return np.array(kirsch_filters, dtype=np.float32)
 
 
 def create_model(input_shape):
     inputs = Input(shape=input_shape)
     conv_layer = Conv2D(1, (3, 3), padding='same', activation='relu')(inputs)  # Faltungsschicht
     kirsch_filters = create_kirsch_filters()
-    conv_layer = Conv2D(8, (3, 3), padding='same', activation='relu', kernel_initializer=tf.constant_initializer(kirsch_filters))(conv_layer)  # Faltung mit Kirsch-Matrizen
+    conv_layer = Conv2D(8, (3, 3), padding='same', activation='relu', kernel_initializer=tf.constant_initializer(np.array(create_kirsch_filters())))(conv_layer)  # Faltung mit Kirsch-Matrizen
     reduc = GlobalAveragePooling2D()(conv_layer)
-    conv_layer = Conv2D(1, (1,1), padding='same', activation='relu')(tf.expand_dims(tf.expand_dims(reduc, axis=1),axis=1))
+    
+    conv_layer = Conv2D(1, (1,1), padding='same', activation='relu')(reduc[:, tf.newaxis, tf.newaxis])
     conv_layer = Add()([conv_layer, inputs])  # Skip Connection
     model = Model(inputs=inputs, outputs=conv_layer)
-    #model.summary()
     return model
+
+
+
+
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()
