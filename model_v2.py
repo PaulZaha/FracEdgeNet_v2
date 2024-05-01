@@ -610,11 +610,14 @@ def create_model(prev_layer):
     conv_layer = layers.Conv2D(1, (3, 3), padding='same', activation='relu')(inputs)  # Faltungsschicht
     kirsch_filters = create_kirsch_filters()
     conv_layer = layers.Conv2D(8, (3, 3), padding='same', activation='relu', kernel_initializer=tf.constant_initializer(np.array(create_kirsch_filters())))(conv_layer)  # Faltung mit Kirsch-Matrizen
-    reduc = layers.GlobalAveragePooling2D()(conv_layer)
+    #reduc = layers.GlobalMaxPooling2D()(conv_layer)
+    #reduc = layers.MaxPooling2D(pool_size=(2,2), strides=(1,1),padding='same')(conv_layer)
     
-    conv_layer = layers.Conv2D(1, (1,1), padding='same', activation='relu')(reduc[:, tf.newaxis, tf.newaxis])
+    conv_layer = layers.Conv2D(prev_layer.shape[-1], (1,1), padding='same', activation='relu')(conv_layer)
+    #(reduc[:, tf.newaxis, tf.newaxis])
     conv_layer = layers.Add()([conv_layer, inputs])  # Skip Connection
     model = Model(inputs=inputs, outputs=conv_layer)
+    model.summary()
     return model
 
 
