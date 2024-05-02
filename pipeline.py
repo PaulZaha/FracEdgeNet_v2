@@ -83,11 +83,23 @@ def main():
     
     dataframe = dataframe[['image_id', 'fractured']].assign(fractured=dataframe['fractured'].astype(str))
 
+    all_indices = [idx for idx in range(len(dataframe))]
+    all_indices = list(all_indices)
 
-    original_indices = [idx for idx in range(len(dataframe)) if not dataframe['fractured'].iloc[idx].endswith('ed.jpg')]
+
+
+    original_indices = [idx for idx in range(len(dataframe)) if not dataframe['image_id'].iloc[idx].endswith('ed.jpg')]
 
     # Führe den Train-Test-Split basierend auf den Originalindizes durch
-    train_indices, test_indices = train_test_split(original_indices, train_size=0.9, shuffle=True)
+    _, test_indices = train_test_split(original_indices, train_size=0.9, shuffle=True)
+
+    test_indices = list(test_indices)
+
+
+
+    train_indices = []
+    train_indices.extend(set(all_indices)-set(test_indices))
+
 
     # Wende die Indizes auf das DataFrame an, um die Trainings- und Testdatensätze zu erhalten
     train_dataset = dataframe.iloc[train_indices]

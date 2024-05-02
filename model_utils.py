@@ -15,7 +15,7 @@ def model_compiler(model):
         staircase=True
     )
     print("scheduler jetzt da")
-    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=1e-5),
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=2e-5),
             loss=tf.keras.losses.BinaryCrossentropy(),
             metrics=['accuracy','FalseNegatives','FalsePositives','Precision','Recall'])
 
@@ -58,10 +58,10 @@ def model_fitter(model,train_generator,validation_generator,epochs):
     # Show the plots
     plt.show()
 
-def model_evaluater(test_generator):
+def model_evaluater(test_generator,model):
     #Load model from best epoch
-    model = tf.keras.models.load_model(os.path.join(os.getcwd(),"trained.h5"))
-
+    #model = tf.keras.models.load_model(os.path.join(os.getcwd(),"trained.h5"))
+    model = model
     #Evaluate the model and save to results
     results = model.evaluate(test_generator)
 
