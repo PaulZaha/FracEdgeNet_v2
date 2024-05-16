@@ -996,7 +996,7 @@ def EfficientNetV2(
         name="stem_conv",
     )(x)
     #!Custom Schicht
-    x=create_model(prev_layer=(x))(x)
+    #x=create_model(prev_layer=(x))(x)
 
     x = layers.BatchNormalization(
         axis=bn_axis,
@@ -1075,6 +1075,7 @@ def EfficientNetV2(
 
     #!Custom Layers
     x = layers.Flatten()(x)
+    x = layers.Dropout(0.5)(x)
     x = layers.Dense(1,activation='sigmoid')(x)
 
     if include_top:

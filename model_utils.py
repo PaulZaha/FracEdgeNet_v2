@@ -7,13 +7,13 @@ import numpy as np
 
 #optimized learning rate for hypertuning EfficientNetB4
 def model_compiler(model):
-    initial_lr = 1e-4
-    lr_schedule = keras.optimizers.schedules.ExponentialDecay(
-        initial_lr,
-        decay_steps=130,
-        decay_rate=0.94,
-        staircase=True
-    )
+    # initial_lr = 1e-4
+    # lr_schedule = keras.optimizers.schedules.ExponentialDecay(
+    #     initial_lr,
+    #     decay_steps=130,
+    #     decay_rate=0.94,
+    #     staircase=True
+    # )
     print("scheduler jetzt da")
     model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=2e-5),
             loss=tf.keras.losses.BinaryCrossentropy(),
@@ -21,7 +21,7 @@ def model_compiler(model):
 
 def model_fitter(model,train_generator,validation_generator,epochs):
     history = model.fit(train_generator,validation_data=validation_generator,epochs=epochs
-                        #,class_weight = {0: 1, 1: 5}
+                        #,class_weight = {0: 1, 1: 1}
                         #,callbacks =[model_callback,stopper,tensorboard_callback,learning_rate_scheduler,custom_lr_update_callback]
                         #,steps_per_epoch=500
                         )

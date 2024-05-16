@@ -81,7 +81,7 @@ def FracEdgeNet(train_generator,validation_generator,test_generator):
             layer.set_weights(pretrained_layer.get_weights())
         except ValueError as e:
             print("ValueError in layer:", layer.name)
-            print("Exception message:", e)
+            #print("Exception message:", e)
 
 
 

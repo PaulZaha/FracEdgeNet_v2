@@ -29,10 +29,10 @@ def create_generators(train_df,test_df,targetsize):
     #Create DataGenerator for training and validation data with augmentation
     #Note: For EfficientNet remove rescaling
     datagen = ImageDataGenerator(#rescale = 1./255,
-                                                              rotation_range=10 
+                                                              rotation_range=10
                                                               ,width_shift_range=0.05
                                                               ,height_shift_range=0.05
-                                                              ,validation_split=0.2)
+                                                              ,validation_split=0.15)
     
     #Create DataGenerator for testing without augmentation
     #Note: For EfficientNet remove rescaling
@@ -103,7 +103,10 @@ def main():
 
     # Wende die Indizes auf das DataFrame an, um die Trainings- und Testdatensätze zu erhalten
     train_dataset = dataframe.iloc[train_indices]
+    train_dataset.sample(frac=1) #For shuffling
+    
     test_dataset = dataframe.iloc[test_indices]
+    test_dataset.sample(frac=1)
 
     #gewicht = round(((dataframe['fractured'].value_counts()).get(0,1))/(dataframe['fractured'].value_counts()).get(1,0),3)
     
