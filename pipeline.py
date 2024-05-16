@@ -10,6 +10,7 @@ import xml.etree.ElementTree as ET
 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
+from model_v2 import create_model
 import sklearn
 from sklearn.model_selection import KFold, train_test_split
 
@@ -77,28 +78,29 @@ def create_generators(train_df,test_df,targetsize):
 
 
 def main():
+
     os.chdir(os.path.join(os.getcwd(),'Dataset','FracAtlas'))
     dataframe = pd.read_csv('dataset_preaugmented.csv')
     os.chdir(os.path.join(os.getcwd(),'..'))
-    
+
     dataframe = dataframe[['image_id', 'fractured']].assign(fractured=dataframe['fractured'].astype(str))
 
-    all_indices = [idx for idx in range(len(dataframe))]
-    all_indices = list(all_indices)
+    #*all_indices = [idx for idx in range(len(dataframe))]
+    #*all_indices = list(all_indices)
 
 
 
-    original_indices = [idx for idx in range(len(dataframe)) if not dataframe['image_id'].iloc[idx].endswith('ed.jpg')]
+    original_indices = [idx for idx in range(len(dataframe)) if not dataframe['fractured'].iloc[idx].endswith('ed.jpg')]
 
     # Führe den Train-Test-Split basierend auf den Originalindizes durch
-    _, test_indices = train_test_split(original_indices, train_size=0.9, shuffle=True)
+    train_indices, test_indices = train_test_split(original_indices, train_size=0.9, shuffle=True)
 
-    test_indices = list(test_indices)
+    #*test_indices = list(test_indices)
 
 
 
-    train_indices = []
-    train_indices.extend(set(all_indices)-set(test_indices))
+    #*train_indices = []
+    #*train_indices.extend(set(all_indices)-set(test_indices))
 
 
     # Wende die Indizes auf das DataFrame an, um die Trainings- und Testdatensätze zu erhalten

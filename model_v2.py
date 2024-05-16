@@ -608,10 +608,8 @@ def create_kirsch_filters():
 def create_model(prev_layer):
     inputs = layers.Input(shape=prev_layer.shape[1:])
     conv_layer = layers.Conv2D(1, (3, 3), padding='same', activation='relu')(inputs)  # Faltungsschicht
-    kirsch_filters = create_kirsch_filters()
     conv_layer = layers.Conv2D(8, (3, 3), padding='same', activation='relu', kernel_initializer=tf.constant_initializer(np.array(create_kirsch_filters())))(conv_layer)  # Faltung mit Kirsch-Matrizen
-    #reduc = layers.GlobalMaxPooling2D()(conv_layer)
-    #reduc = layers.MaxPooling2D(pool_size=(2,2), strides=(1,1),padding='same')(conv_layer)
+
     
     conv_layer = layers.Conv2D(prev_layer.shape[-1], (1,1), padding='same', activation='relu')(conv_layer)
     #(reduc[:, tf.newaxis, tf.newaxis])
@@ -986,6 +984,8 @@ def EfficientNetV2(
         min_depth=min_depth,
         depth_divisor=depth_divisor,
     )
+    #!Custom Schicht
+    #x=create_model(prev_layer=(x))(x)
     x = layers.Conv2D(
         filters=stem_filters,
         kernel_size=3,
@@ -995,8 +995,7 @@ def EfficientNetV2(
         use_bias=False,
         name="stem_conv",
     )(x)
-    #!Custom Schicht
-    #x=create_model(prev_layer=(x))(x)
+
 
     x = layers.BatchNormalization(
         axis=bn_axis,
