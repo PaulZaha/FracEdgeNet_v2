@@ -985,7 +985,7 @@ def EfficientNetV2(
         depth_divisor=depth_divisor,
     )
     #!Custom Schicht
-    #x=create_model(prev_layer=(x))(x)
+    x=create_model(prev_layer=(x))(x)
     x = layers.Conv2D(
         filters=stem_filters,
         kernel_size=3,
@@ -1074,7 +1074,6 @@ def EfficientNetV2(
 
     #!Custom Layers
     x = layers.Flatten()(x)
-    x = layers.Dropout(0.5)(x)
     x = layers.Dense(1,activation='sigmoid')(x)
 
     if include_top:

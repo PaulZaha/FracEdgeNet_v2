@@ -1,0 +1,66 @@
+Epoch 1/20
+/home/paul_zaha/.local/lib/python3.10/site-packages/keras/src/trainers/data_adapters/py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
+  self._warn_if_super_not_called()
+2024-05-27 14:52:11.916585: I external/local_xla/xla/service/service.cc:168] XLA service 0x556c9bf41a80 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2024-05-27 14:52:11.916620: I external/local_xla/xla/service/service.cc:176]   StreamExecutor device (0): NVIDIA GeForce RTX 4070 Ti, Compute Capability 8.9
+2024-05-27 14:52:12.516474: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+2024-05-27 14:52:20.127756: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:454] Loaded cuDNN version 8907
+2024-05-27 14:52:39.640168: I external/local_tsl/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: No such file or directory
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1716814386.905290     585 device_compiler.h:186] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+275/275 ━━━━━━━━━━━━━━━━━━━━ 265s 702ms/step - FalseNegatives: 239.0254 - FalsePositives: 219.2971 - Precision: 0.7639 - Recall: 0.7471 - accuracy: 0.7654 - loss: 0.4817 - val_FalseNegatives: 55.0000 - val_FalsePositives: 46.0000 - val_Precision: 0.8875 - val_Recall: 0.8684 - val_accuracy: 0.8695 - val_loss: 0.3009
+Epoch 2/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 110s 391ms/step - FalseNegatives: 139.4493 - FalsePositives: 109.8080 - Precision: 0.8930 - Recall: 0.8697 - accuracy: 0.8850 - loss: 0.2865 - val_FalseNegatives: 56.0000 - val_FalsePositives: 29.0000 - val_Precision: 0.9258 - val_Recall: 0.8660 - val_accuracy: 0.8902 - val_loss: 0.2820
+Epoch 3/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 111s 394ms/step - FalseNegatives: 116.1159 - FalsePositives: 91.3768 - Precision: 0.9153 - Recall: 0.8955 - accuracy: 0.9066 - loss: 0.2407 - val_FalseNegatives: 37.0000 - val_FalsePositives: 38.0000 - val_Precision: 0.9093 - val_Recall: 0.9115 - val_accuracy: 0.9031 - val_loss: 0.2423
+Epoch 4/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 111s 394ms/step - FalseNegatives: 105.2681 - FalsePositives: 83.6667 - Precision: 0.9259 - Recall: 0.9120 - accuracy: 0.9194 - loss: 0.2116 - val_FalseNegatives: 32.0000 - val_FalsePositives: 29.0000 - val_Precision: 0.9301 - val_Recall: 0.9234 - val_accuracy: 0.9212 - val_loss: 0.2361
+Epoch 5/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 389ms/step - FalseNegatives: 101.5906 - FalsePositives: 69.6051 - Precision: 0.9373 - Recall: 0.9137 - accuracy: 0.9267 - loss: 0.1876 - val_FalseNegatives: 25.0000 - val_FalsePositives: 55.0000 - val_Precision: 0.8772 - val_Recall: 0.9402 - val_accuracy: 0.8966 - val_loss: 0.2662
+Epoch 6/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 111s 395ms/step - FalseNegatives: 86.9710 - FalsePositives: 75.1413 - Precision: 0.9277 - Recall: 0.9219 - accuracy: 0.9259 - loss: 0.1900 - val_FalseNegatives: 31.0000 - val_FalsePositives: 30.0000 - val_Precision: 0.9281 - val_Recall: 0.9258 - val_accuracy: 0.9212 - val_loss: 0.2222
+Epoch 7/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 389ms/step - FalseNegatives: 82.3768 - FalsePositives: 61.0580 - Precision: 0.9441 - Recall: 0.9301 - accuracy: 0.9373 - loss: 0.1686 - val_FalseNegatives: 37.0000 - val_FalsePositives: 29.0000 - val_Precision: 0.9293 - val_Recall: 0.9115 - val_accuracy: 0.9147 - val_loss: 0.2166
+Epoch 8/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 110s 391ms/step - FalseNegatives: 73.0616 - FalsePositives: 51.9348 - Precision: 0.9475 - Recall: 0.9342 - accuracy: 0.9439 - loss: 0.1422 - val_FalseNegatives: 30.0000 - val_FalsePositives: 30.0000 - val_Precision: 0.9282 - val_Recall: 0.9282 - val_accuracy: 0.9225 - val_loss: 0.2109
+Epoch 9/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 389ms/step - FalseNegatives: 80.7101 - FalsePositives: 46.9746 - Precision: 0.9552 - Recall: 0.9237 - accuracy: 0.9411 - loss: 0.1478 - val_FalseNegatives: 29.0000 - val_FalsePositives: 40.0000 - val_Precision: 0.9068 - val_Recall: 0.9306 - val_accuracy: 0.9109 - val_loss: 0.2242
+Epoch 10/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 110s 389ms/step - FalseNegatives: 56.2138 - FalsePositives: 42.2717 - Precision: 0.9640 - Recall: 0.9548 - accuracy: 0.9592 - loss: 0.1304 - val_FalseNegatives: 29.0000 - val_FalsePositives: 35.0000 - val_Precision: 0.9175 - val_Recall: 0.9306 - val_accuracy: 0.9173 - val_loss: 0.2185
+Epoch 11/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 387ms/step - FalseNegatives: 62.6087 - FalsePositives: 34.2862 - Precision: 0.9699 - Recall: 0.9438 - accuracy: 0.9584 - loss: 0.1320 - val_FalseNegatives: 31.0000 - val_FalsePositives: 29.0000 - val_Precision: 0.9303 - val_Recall: 0.9258 - val_accuracy: 0.9225 - val_loss: 0.2191
+Epoch 12/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 110s 390ms/step - FalseNegatives: 66.1594 - FalsePositives: 42.1594 - Precision: 0.9588 - Recall: 0.9322 - accuracy: 0.9469 - loss: 0.1460 - val_FalseNegatives: 39.0000 - val_FalsePositives: 26.0000 - val_Precision: 0.9358 - val_Recall: 0.9067 - val_accuracy: 0.9160 - val_loss: 0.2277
+Epoch 13/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 388ms/step - FalseNegatives: 57.4783 - FalsePositives: 38.6449 - Precision: 0.9650 - Recall: 0.9472 - accuracy: 0.9565 - loss: 0.1156 - val_FalseNegatives: 40.0000 - val_FalsePositives: 24.0000 - val_Precision: 0.9403 - val_Recall: 0.9043 - val_accuracy: 0.9173 - val_loss: 0.2150
+Epoch 14/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 110s 389ms/step - FalseNegatives: 52.8333 - FalsePositives: 33.2138 - Precision: 0.9701 - Recall: 0.9512 - accuracy: 0.9615 - loss: 0.1108 - val_FalseNegatives: 34.0000 - val_FalsePositives: 31.0000 - val_Precision: 0.9253 - val_Recall: 0.9187 - val_accuracy: 0.9160 - val_loss: 0.2060
+Epoch 15/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 389ms/step - FalseNegatives: 49.8442 - FalsePositives: 32.3623 - Precision: 0.9715 - Recall: 0.9555 - accuracy: 0.9647 - loss: 0.1089 - val_FalseNegatives: 28.0000 - val_FalsePositives: 39.0000 - val_Precision: 0.9091 - val_Recall: 0.9330 - val_accuracy: 0.9134 - val_loss: 0.2148
+Epoch 16/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 388ms/step - FalseNegatives: 56.4928 - FalsePositives: 41.9891 - Precision: 0.9616 - Recall: 0.9500 - accuracy: 0.9564 - loss: 0.1059 - val_FalseNegatives: 31.0000 - val_FalsePositives: 26.0000 - val_Precision: 0.9370 - val_Recall: 0.9258 - val_accuracy: 0.9264 - val_loss: 0.1870
+Epoch 17/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 389ms/step - FalseNegatives: 49.2645 - FalsePositives: 32.8913 - Precision: 0.9689 - Recall: 0.9553 - accuracy: 0.9633 - loss: 0.0976 - val_FalseNegatives: 28.0000 - val_FalsePositives: 51.0000 - val_Precision: 0.8844 - val_Recall: 0.9330 - val_accuracy: 0.8979 - val_loss: 0.2225
+Epoch 18/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 387ms/step - FalseNegatives: 48.9275 - FalsePositives: 32.0833 - Precision: 0.9693 - Recall: 0.9570 - accuracy: 0.9641 - loss: 0.0976 - val_FalseNegatives: 32.0000 - val_FalsePositives: 34.0000 - val_Precision: 0.9190 - val_Recall: 0.9234 - val_accuracy: 0.9147 - val_loss: 0.2246
+Epoch 19/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 388ms/step - FalseNegatives: 41.3007 - FalsePositives: 28.7500 - Precision: 0.9761 - Recall: 0.9660 - accuracy: 0.9716 - loss: 0.0909 - val_FalseNegatives: 32.0000 - val_FalsePositives: 35.0000 - val_Precision: 0.9169 - val_Recall: 0.9234 - val_accuracy: 0.9134 - val_loss: 0.2158
+Epoch 20/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 110s 390ms/step - FalseNegatives: 38.5906 - FalsePositives: 24.8478 - Precision: 0.9780 - Recall: 0.9654 - accuracy: 0.9725 - loss: 0.0916 - val_FalseNegatives: 33.0000 - val_FalsePositives: 31.0000 - val_Precision: 0.9255 - val_Recall: 0.9211 - val_accuracy: 0.9173 - val_loss: 0.2143
+[0.8128988146781921, 0.8862807750701904, 0.9047402143478394, 0.9154512286186218, 0.9193254113197327, 0.9250227808952332, 0.9339106678962708, 0.9409753680229187, 0.9421148300170898, 0.9537374377250671, 0.9541932344436646, 0.9541932344436646, 0.9557884931564331, 0.9605742692947388, 0.9635369181632996, 0.956928014755249, 0.9628532528877258, 0.9623974561691284, 0.9674111008644104, 0.9708295464515686]
+[0.40970197319984436, 0.27829083800315857, 0.24159274995326996, 0.21487928926944733, 0.1990301012992859, 0.1879131942987442, 0.1718241572380066, 0.14871707558631897, 0.14835485816001892, 0.13505162298679352, 0.13544659316539764, 0.12952271103858948, 0.1163964793086052, 0.11333313584327698, 0.10781348496675491, 0.10714141279459, 0.10441986471414566, 0.10196216404438019, 0.09654942154884338, 0.09090539813041687]
+[0.8695090413093567, 0.8901808857917786, 0.9031007885932922, 0.9211886525154114, 0.8966408371925354, 0.9211886525154114, 0.9147287011146545, 0.9224806427955627, 0.9108527302742004, 0.9173126816749573, 0.9224806427955627, 0.9160206913948059, 0.9173126816749573, 0.9160206913948059, 0.9134367108345032, 0.9263566136360168, 0.8979328274726868, 0.9147287011146545, 0.9134367108345032, 0.9173126816749573]
+[0.30086299777030945, 0.28202110528945923, 0.24234651029109955, 0.23606567084789276, 0.2661657929420471, 0.22221294045448303, 0.2165611982345581, 0.2109486311674118, 0.22423340380191803, 0.2184576541185379, 0.21908317506313324, 0.2276517152786255, 0.21495217084884644, 0.20602384209632874, 0.21478460729122162, 0.18699583411216736, 0.22251062095165253, 0.22464710474014282, 0.21582268178462982, 0.214329794049263]
+574/574 ━━━━━━━━━━━━━━━━━━━━ 21s 13ms/step - FalseNegatives: 9.4922 - FalsePositives: 9.9896 - Precision: 0.9288 - Recall: 0.9345 - accuracy: 0.9332 - loss: 0.2049
+{'Accuracy: ': 0.9320557713508606, 'Loss: ': 0.1976146101951599, 'False_Negatives: ': 22, 'False_Positives: ': 17, 'Precision: ': 0.9403508901596069, 'Recall: ': 0.9241379499435425}
+Confusion Matrix:
+[[268  17]
+ [ 22 267]]
+Accuracy:
+0.9320557713508606
+Precicion:
+0.9403508901596069
+Recall:
+0.9241379499435425
+
+K:\FracEdgeNet_v2>

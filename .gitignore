@@ -1,3 +1,5 @@
 Dataset/
 env/
 trained.h5
+results/mit custom/trained.keras
+results/ohne_custom/trained.keras

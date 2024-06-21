@@ -95,14 +95,14 @@ def FracEdgeNet(train_generator,validation_generator,test_generator):
 
     for layer in FracEdgeNet.layers[:-2]:
         layer.trainable=False
-    FracEdgeNet.save('efficientnetv2s.keras')
+
     #FracEdgeNet.save('structure.h5')
         
     model_compiler(FracEdgeNet)
 
     print("Ab hier: Classifier Fitting")
     model_fitter(FracEdgeNet,train_generator,validation_generator,20)
-
+    FracEdgeNet.save('trained.keras')
     model_evaluater(test_generator,FracEdgeNet)
 
 

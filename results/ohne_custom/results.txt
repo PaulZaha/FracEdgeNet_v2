@@ -1,0 +1,67 @@
+Epoch 1/20
+/home/paul_zaha/.local/lib/python3.10/site-packages/keras/src/trainers/data_adapters/py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
+  self._warn_if_super_not_called()
+2024-06-21 10:36:48.434629: I external/local_xla/xla/service/service.cc:168] XLA service 0x5562516b32a0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2024-06-21 10:36:48.434666: I external/local_xla/xla/service/service.cc:176]   StreamExecutor device (0): NVIDIA GeForce RTX 4070 Ti, Compute Capability 8.9
+2024-06-21 10:36:49.085892: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+2024-06-21 10:36:56.066161: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:454] Loaded cuDNN version 8907
+2024-06-21 10:37:14.310370: I external/local_tsl/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: No such file or directory
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1718959062.472055     525 device_compiler.h:186] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+178/275 ━━━━━━━━━━━━━━━━━━━━ 33s 348ms/step - FalseNegatives: 205.3933 - FalsePositives: 185.1348 - Precision: 0.7083 - Recall: 0.6828 - accuracy: 0.6992 - loss: 0.5751
+275/275 ━━━━━━━━━━━━━━━━━━━━ 248s 646ms/step - FalseNegatives: 288.4964 - FalsePositives: 257.2572 - Precision: 0.7340 - Recall: 0.7099 - accuracy: 0.7246 - loss: 0.5412 - val_FalseNegatives: 63.0000 - val_FalsePositives: 56.0000 - val_Precision: 0.8522 - val_Recall: 0.8368 - val_accuracy: 0.8463 - val_loss: 0.3707
+Epoch 2/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 389ms/step - FalseNegatives: 183.6812 - FalsePositives: 149.3261 - Precision: 0.8608 - Recall: 0.8287 - accuracy: 0.8463 - loss: 0.3456 - val_FalseNegatives: 52.0000 - val_FalsePositives: 46.0000 - val_Precision: 0.8789 - val_Recall: 0.8653 - val_accuracy: 0.8734 - val_loss: 0.3180
+Epoch 3/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 386ms/step - FalseNegatives: 147.2826 - FalsePositives: 118.1775 - Precision: 0.8879 - Recall: 0.8655 - accuracy: 0.8769 - loss: 0.2944 - val_FalseNegatives: 62.0000 - val_FalsePositives: 40.0000 - val_Precision: 0.8901 - val_Recall: 0.8394 - val_accuracy: 0.8682 - val_loss: 0.3192
+Epoch 4/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 120s 427ms/step - FalseNegatives: 126.8370 - FalsePositives: 99.9130 - Precision: 0.9048 - Recall: 0.8814 - accuracy: 0.8956 - loss: 0.2625 - val_FalseNegatives: 59.0000 - val_FalsePositives: 47.0000 - val_Precision: 0.8743 - val_Recall: 0.8472 - val_accuracy: 0.8630 - val_loss: 0.3042
+Epoch 5/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 119s 424ms/step - FalseNegatives: 116.4275 - FalsePositives: 100.2101 - Precision: 0.9105 - Recall: 0.9012 - accuracy: 0.9023 - loss: 0.2466 - val_FalseNegatives: 52.0000 - val_FalsePositives: 38.0000 - val_Precision: 0.8978 - val_Recall: 0.8653 - val_accuracy: 0.8837 - val_loss: 0.3008
+Epoch 6/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 387ms/step - FalseNegatives: 109.9167 - FalsePositives: 83.4928 - Precision: 0.9213 - Recall: 0.9018 - accuracy: 0.9129 - loss: 0.2191 - val_FalseNegatives: 38.0000 - val_FalsePositives: 61.0000 - val_Precision: 0.8509 - val_Recall: 0.9016 - val_accuracy: 0.8721 - val_loss: 0.3225
+Epoch 7/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 389ms/step - FalseNegatives: 93.0217 - FalsePositives: 72.4420 - Precision: 0.9364 - Recall: 0.9252 - accuracy: 0.9299 - loss: 0.1959 - val_FalseNegatives: 54.0000 - val_FalsePositives: 41.0000 - val_Precision: 0.8901 - val_Recall: 0.8601 - val_accuracy: 0.8773 - val_loss: 0.2904
+Epoch 8/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 387ms/step - FalseNegatives: 80.7391 - FalsePositives: 63.6123 - Precision: 0.9450 - Recall: 0.9289 - accuracy: 0.9382 - loss: 0.1723 - val_FalseNegatives: 33.0000 - val_FalsePositives: 54.0000 - val_Precision: 0.8673 - val_Recall: 0.9145 - val_accuracy: 0.8876 - val_loss: 0.2926
+Epoch 9/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 387ms/step - FalseNegatives: 86.0906 - FalsePositives: 63.3949 - Precision: 0.9431 - Recall: 0.9260 - accuracy: 0.9349 - loss: 0.1840 - val_FalseNegatives: 53.0000 - val_FalsePositives: 29.0000 - val_Precision: 0.9199 - val_Recall: 0.8627 - val_accuracy: 0.8941 - val_loss: 0.2713
+Epoch 10/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 387ms/step - FalseNegatives: 75.1775 - FalsePositives: 55.0580 - Precision: 0.9519 - Recall: 0.9373 - accuracy: 0.9440 - loss: 0.1606 - val_FalseNegatives: 60.0000 - val_FalsePositives: 30.0000 - val_Precision: 0.9157 - val_Recall: 0.8446 - val_accuracy: 0.8837 - val_loss: 0.2709
+Epoch 11/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 386ms/step - FalseNegatives: 70.8333 - FalsePositives: 54.6341 - Precision: 0.9501 - Recall: 0.9380 - accuracy: 0.9430 - loss: 0.1589 - val_FalseNegatives: 39.0000 - val_FalsePositives: 47.0000 - val_Precision: 0.8807 - val_Recall: 0.8990 - val_accuracy: 0.8889 - val_loss: 0.2527
+Epoch 12/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 110s 389ms/step - FalseNegatives: 83.5833 - FalsePositives: 59.8406 - Precision: 0.9393 - Recall: 0.9231 - accuracy: 0.9342 - loss: 0.1721 - val_FalseNegatives: 53.0000 - val_FalsePositives: 36.0000 - val_Precision: 0.9024 - val_Recall: 0.8627 - val_accuracy: 0.8850 - val_loss: 0.2922
+Epoch 13/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 388ms/step - FalseNegatives: 72.9819 - FalsePositives: 47.3732 - Precision: 0.9549 - Recall: 0.9372 - accuracy: 0.9463 - loss: 0.1452 - val_FalseNegatives: 36.0000 - val_FalsePositives: 50.0000 - val_Precision: 0.8750 - val_Recall: 0.9067 - val_accuracy: 0.8889 - val_loss: 0.2971
+Epoch 14/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 386ms/step - FalseNegatives: 62.1522 - FalsePositives: 47.5362 - Precision: 0.9534 - Recall: 0.9452 - accuracy: 0.9497 - loss: 0.1480 - val_FalseNegatives: 31.0000 - val_FalsePositives: 60.0000 - val_Precision: 0.8554 - val_Recall: 0.9197 - val_accuracy: 0.8824 - val_loss: 0.3074
+Epoch 15/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 387ms/step - FalseNegatives: 62.4275 - FalsePositives: 41.7283 - Precision: 0.9595 - Recall: 0.9417 - accuracy: 0.9513 - loss: 0.1364 - val_FalseNegatives: 58.0000 - val_FalsePositives: 31.0000 - val_Precision: 0.9136 - val_Recall: 0.8497 - val_accuracy: 0.8850 - val_loss: 0.2853
+Epoch 16/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 388ms/step - FalseNegatives: 72.8804 - FalsePositives: 50.4312 - Precision: 0.9519 - Recall: 0.9326 - accuracy: 0.9421 - loss: 0.1476 - val_FalseNegatives: 47.0000 - val_FalsePositives: 25.0000 - val_Precision: 0.9313 - val_Recall: 0.8782 - val_accuracy: 0.9070 - val_loss: 0.2402
+Epoch 17/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 110s 389ms/step - FalseNegatives: 73.2283 - FalsePositives: 42.0181 - Precision: 0.9633 - Recall: 0.9303 - accuracy: 0.9476 - loss: 0.1296 - val_FalseNegatives: 40.0000 - val_FalsePositives: 40.0000 - val_Precision: 0.8964 - val_Recall: 0.8964 - val_accuracy: 0.8966 - val_loss: 0.2760
+Epoch 18/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 387ms/step - FalseNegatives: 58.4928 - FalsePositives: 41.1087 - Precision: 0.9603 - Recall: 0.9481 - accuracy: 0.9542 - loss: 0.1250 - val_FalseNegatives: 32.0000 - val_FalsePositives: 50.0000 - val_Precision: 0.8762 - val_Recall: 0.9171 - val_accuracy: 0.8941 - val_loss: 0.2684
+Epoch 19/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 109s 387ms/step - FalseNegatives: 59.0471 - FalsePositives: 37.0000 - Precision: 0.9638 - Recall: 0.9501 - accuracy: 0.9569 - loss: 0.1214 - val_FalseNegatives: 47.0000 - val_FalsePositives: 40.0000 - val_Precision: 0.8945 - val_Recall: 0.8782 - val_accuracy: 0.8876 - val_loss: 0.2755
+Epoch 20/20
+275/275 ━━━━━━━━━━━━━━━━━━━━ 110s 390ms/step - FalseNegatives: 58.6884 - FalsePositives: 35.7609 - Precision: 0.9637 - Recall: 0.9448 - accuracy: 0.9552 - loss: 0.1166 - val_FalseNegatives: 44.0000 - val_FalsePositives: 38.0000 - val_Precision: 0.9000 - val_Recall: 0.8860 - val_accuracy: 0.8941 - val_loss: 0.2641
+[0.7848678231239319, 0.8541476726531982, 0.8835460543632507, 0.8960801959037781, 0.9036007523536682, 0.9143117666244507, 0.9229717254638672, 0.9275296330451965, 0.9282132983207703, 0.9380127787590027, 0.9400638341903687, 0.9345943331718445, 0.9453054070472717, 0.9469006657600403, 0.9489516615867615, 0.9453054070472717, 0.9473564028739929, 0.9537374377250671, 0.9523701071739197, 0.9580674767494202]
+[0.4594848155975342, 0.3289417028427124, 0.287067711353302, 0.25841179490089417, 0.24173571169376373, 0.21565090119838715, 0.20720265805721283, 0.1890646517276764, 0.1855982542037964, 0.17681972682476044, 0.16373540461063385, 0.1672416627407074, 0.14516031742095947, 0.1492518037557602, 0.13975755870342255, 0.14450141787528992, 0.13452325761318207, 0.1267722100019455, 0.13279776275157928, 0.11868436634540558]
+[0.8462532162666321, 0.8733850121498108, 0.8682170510292053, 0.8630490899085999, 0.8837209343910217, 0.8720930218696594, 0.8772609829902649, 0.8875969052314758, 0.8940568566322327, 0.8837209343910217, 0.8888888955116272, 0.8850129246711731, 0.8888888955116272, 0.8824289441108704, 0.8850129246711731, 0.9069767594337463, 0.8966408371925354, 0.8940568566322327, 0.8875969052314758, 0.8940568566322327]
+[0.3706980347633362, 0.3180049955844879, 0.3191981911659241, 0.3042290210723877, 0.30077508091926575, 0.3225325644016266, 0.29044309258461, 0.29262587428092957, 0.271297425031662, 0.27087637782096863, 0.25272831320762634, 0.2922135293483734, 0.29705455899238586, 0.3073575794696808, 0.28527742624282837, 0.2402399331331253, 0.2760067582130432, 0.26842784881591797, 0.275481641292572, 0.2641215920448303]
+574/574 ━━━━━━━━━━━━━━━━━━━━ 16s 13ms/step - FalseNegatives: 21.7357 - FalsePositives: 8.8139 - Precision: 0.9296 - Recall: 0.8519 - accuracy: 0.8906 - loss: 0.2774
+{'Accuracy: ': 0.907665491104126, 'Loss: ': 0.2468080222606659, 'False_Negatives: ': 36, 'False_Positives: ': 17, 'Precision: ': 0.9346153736114502, 'Recall: ': 0.8709677457809448}
+Confusion Matrix:
+[[242  17]
+ [ 36 279]]
+Accuracy:
+0.907665491104126
+Precicion:
+0.9346153736114502
+Recall:
+0.8709677457809448
+
+K:\FracEdgeNet_v2>
